@@ -17,6 +17,7 @@
 4. Create a CSS file with at least 2 selectors that is linked to from the home page.
 5. Create a JS file that is linked to from the home page. It can be empty for now. -->
     <header>
+        <?php include 'mars_menu.php'; ?>
         <h1>Outer Space Adventures</h1>
     </header>
     <main>
