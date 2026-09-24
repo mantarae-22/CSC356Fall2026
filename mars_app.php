@@ -17,6 +17,7 @@
     </header>
     <main>
         <!-- we need a form with at least 5 inputs, mix of numbers and text inputs -->
+        <div id="divMsg"></div>
 
         <form name="frmApp" id="frmApp" action="process_app.php" method="post" onsubmit="return validateForm();">
             <div>
