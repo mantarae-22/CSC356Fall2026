@@ -60,7 +60,5 @@ function validateLoginForm(){
         form.pwdUser.style.backgroundColor = "yellow";
     }
 
-    // add more validation for the other inputs
-
     return validInput;
 }

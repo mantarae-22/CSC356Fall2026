@@ -1,3 +1,38 @@
+<?php
+    // this variable will hold a message that is shown to the user
+    $message = "";
+    
+    // check if this is a post back
+    if ($_SERVER['REQUEST_METHOD'] == "POST"){       
+        // user name variable to hold what info the user typed in for their username
+        $username = $_POST["txtUserName"];
+        $password = $_POST["pwdUser"];
+
+        echo "username: " . $username . "<BR>";
+        echo "password: " . $password. "<BR>";
+
+        # get a connection to the database - required for the rest of this code to work, and we only need to start the connection 1 time
+        require_once "db_conn.php";
+
+        # create an sql statement to see if a valid username and password were entered
+        $sql = "SELECT user_id FROM user_info WHERE user_name = :user_name AND password = :password;";
+
+        // prepare the statement
+        $stmt = $pdo->prepare($sql);
+
+        // execute and pass in the values
+        $stmt->execute(["user_name" => $username, "password" => $password]);
+
+        // fetch the results
+        $users = $stmt->fetchAll();
+
+        foreach ($users as $user){
+            echo $user["user_id"] . "<BR>";
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,27 +43,6 @@
     <link rel="stylesheet" href="mars.css">
     <!-- link to the JavaScript file; defer to wait to run the JavaScript code until all of the HTML elements have loaded -->
     <script src="mars.js" defer></script>
-
-    <!-- TODO: move to an external CSS file -->
-    <style>
-        header{
-            text-align: center;
-        }
-        form{
-            max-width: 400px;
-            background-color: rgb(243, 117, 117);
-            color: indigo;
-            border-radius: 10px;
-            text-align: center;
-            border: 2px solid orange;
-            margin: 0 auto;
-        }
-
-        form div{
-            padding: 10px;
-        }
-    </style>
-
 </head>
 <body>
    <header>
@@ -37,7 +51,8 @@
     </header>
     <main>
         <!-- we need a form with 2 inputs - 1 should use the password input -->
-        <div id="divMsg"></div>
+         <!-- this div would first show any messages from the JavaScript validation. If the JS validation returns true, then the form will post and any PHP errors would then be shown here -->
+        <div id="divMsg"><?php echo $message ?></div>
 
         <form name="frmLogin" id="frmLogin" action="mars_login.php" method="post" onsubmit="return validateLoginForm();">
             <div>

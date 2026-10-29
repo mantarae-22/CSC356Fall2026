@@ -20,3 +20,20 @@ header a{
     text-align: center;
     border-radius: 5px;
 }
+
+header{
+    text-align: center;
+}
+form{
+    max-width: 400px;
+    background-color: rgb(243, 117, 117);
+    color: indigo;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid orange;
+    margin: 0 auto;
+}
+
+form div{
+    padding: 10px;
+}
