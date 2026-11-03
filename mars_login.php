@@ -1,4 +1,7 @@
 <?php
+    // this tells PHP to use the session values on this page
+    session_start();
+
     // this variable will hold a message that is shown to the user
     $message = "";
     
@@ -24,10 +27,24 @@
         $stmt->execute(["user_name" => $username, "password" => $password]);
 
         // fetch the results
-        $users = $stmt->fetchAll();
+        $user = $stmt->fetch();
 
-        foreach ($users as $user){
-            echo $user["user_id"] . "<BR>";
+        // if the username and password matched, this if statement will be true
+        if ($user){
+            // create a new session ID, so the user has the best experience
+            session_regenerate_id();
+
+            // save the user's name and id in the session
+            $_SESSION["user_id"] = $user["user_id"];
+            $_SESSION["user_name"] = $username;
+
+            // send the user to the protected page
+            header("Location: mars_dashboard.php");
+            exit;
+        }
+        // no match found
+        else{
+            $message = "Invalid username or password. Please try again.";
         }
     }
 ?>
