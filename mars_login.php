@@ -18,7 +18,8 @@
         require_once "db_conn.php";
 
         # create an sql statement to see if a valid username and password were entered
-        $sql = "SELECT user_id FROM user_info WHERE user_name = :user_name AND password = :password;";
+        #$sql = "SELECT user_id FROM user_info WHERE user_name = :user_name AND password = :password;";
+        $sql = "CALL sp_user_info_login(:user_name, :password)";
 
         // prepare the statement
         $stmt = $pdo->prepare($sql);
