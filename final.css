@@ -1,0 +1,40 @@
+body{
+    background-color: darkslategray;
+    color: whitesmoke;
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    text-align: center;
+}
+
+form{
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+label, #char_count{
+    padding-bottom: 10px;
+}
+
+/* Move to external CSS file */
+div label{
+    display: block;
+    margin-top: 10px;
+}
+
+/* anything with this class will not appear in the browser */
+.hidden{
+    display: none;
+}
+
+button{
+    padding: 8px;
+    background-color: bisque;
+    border-radius: 5px;
+    font-size: medium;
+    color: darkslategray;
+    font-weight: bold;
+}
